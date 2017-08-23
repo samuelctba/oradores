@@ -5,25 +5,41 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { Network } from '@ionic-native/network';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBqem59kEaziuRi5-NFAjSVT4d8N5QHIGk",
+  authDomain: "oradores-80dd5.firebaseapp.com",
+  databaseURL: "https://oradores-80dd5.firebaseio.com",
+  projectId: "oradores-80dd5",
+  storageBucket: "oradores-80dd5.appspot.com",
+  messagingSenderId: "951609711216"
+};
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
-  ],
+    MyApp
+    ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

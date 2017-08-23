@@ -1,14 +1,39 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="oradoresColor">
+    <ion-title align="left">
+      Arranjo de Oradores
     </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="signOut()" *ngIf="userID">
+          <ion-icon  name="log-out"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="openPagePerfil()" *ngIf="userID">
+          <ion-icon  name="person"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="openPageCadastroOrador()" *ngIf="userID">
+          <ion-icon  name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding *ngIf="userID">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pulling-text="Puxe para atualizar..." refreshing-text="Atualizando!" refreshing-icon="ion-loading-c"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-list-header>
+      Arranjos - {{hoje}}
+    </ion-list-header>
+   <ion-item-sliding #item *ngFor="let orador of oradores" (ionSwipe)="deleteOrador(orador)">
+      <button ion-item (click)="openPageDetalhesOrador(orador)" [ngClass]="{'activated':isInThisWeek(orador.dataDiscurso)}">
+        {{orador.dataDiscurso | date:'dd-MM-yyyy'}} - {{orador.nomeOrador}}
+        </button>
+      <ion-item-options side="right">
+        <button ion-button expandable color="danger" (click)="deleteOrador(orador)">Deletar</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

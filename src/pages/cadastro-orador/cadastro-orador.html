@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar color="oradoresColor">
+    <ion-title>Cadastrar Novo Arranjo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content" padding>
+  <div class="login-box">
+    <form #registerForm="ngForm" (ngSubmit)="cadastrarNovoArranjo(); registerForm.reset()">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <!-- <ion-input type="text" placeholder="Data do Discurso" name="dataDiscurso" [(ngModel)]="registerCredentials.dataDiscurso" required></ion-input> -->
+              <ion-datetime min="2017" max="2018-10-31" displayFormat="DD/MM/YYYY" placeholder="Data do Discurso" name="dataDiscurso" [(ngModel)]="registerCredentials.dataDiscurso"
+                required></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Nome do Orador" name="nomeOrador" [(ngModel)]="registerCredentials.nomeOrador" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Congregação" name="congregacao" [(ngModel)]="registerCredentials.congregacao" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" placeholder="Número do Esboço" name="numeroEsboco" [(ngModel)]="registerCredentials.numeroEsboco"
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Tema do Discurso" name="temaDiscurso" [(ngModel)]="registerCredentials.temaDiscurso"
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" pattern="[0-9]+" placeholder="Telefone" name="telefoneContato" [(ngModel)]="registerCredentials.telefoneContato"
+                required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email"
+                required></ion-input>
+            </ion-item>
+            <ion-item hidden>
+              <ion-input type="text" placeholder="createdby" name="createdby" [(ngModel)]="registerCredentials.createdby" value="this.email"
+                required></ion-input>
+            </ion-item>
+            <ion-item hidden>
+              <ion-input type="text" placeholder="Arranjo Criado por" name="createdDate" [(ngModel)]="registerCredentials.createdDate"
+                required></ion-input>
+            </ion-item>
+            <ion-item hidden>
+              <ion-input type="text" placeholder="Arranjo Criado por" name="createdDate" [(ngModel)]="registerCredentials.lastUpdateby"
+                required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!editMode">
+        <ion-col class="signup-col">
+          <button ion-button color="oradoresColor" class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Cadastrar</button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="editMode">
+        <ion-col class="signup-col">
+          <button ion-button color="oradoresColor" class="submit-btn" full type="button"  (click)="editar(registerCredentials)"[disabled]="!registerForm.form.valid">Salvar</button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row hidden>
+        <ion-col class="signup-col">
+          <button ion-button color="oradoresColor" class="submit-btn" full type="button" (click)="registerForm.reset()">Limpar formulário</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,44 @@
+page-cadastro-orador {
+
+    .login-content {
+        background: #D9E0F3;
+     
+        .login-box {
+          background: #506D92;
+          padding: 0px;
+          margin: 0px;
+        }
+     
+        ion-row {
+           align-items: center;
+           text-align: center;
+         }
+     
+         ion-item {
+             border-radius: 30px !important;
+             padding-left: 30px !important;
+             font-size: 0.9em;
+             margin-bottom: 10px;
+             border: 1px solid #ffffff;
+             border-bottom: 0px !important;
+             box-shadow: none !important;
+         }
+     
+         .signup-col {
+           margin: 0px 16px 0px 16px;
+           padding-bottom: 20px;
+         }
+     
+         .item-inner {
+           border-bottom-color: #ffffff !important;
+           box-shadow: none !important;
+         }
+     
+         .submit-btn {
+           background: #5199CF;
+           border-radius: 30px !important;
+           border: 1px solid #ffffff;
+         }
+      }
+
+}
