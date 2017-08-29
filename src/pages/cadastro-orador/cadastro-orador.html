@@ -16,6 +16,11 @@
                 required></ion-datetime>
             </ion-item>
             <ion-item>
+              <!-- <ion-input type="text" placeholder="Data do Discurso" name="dataDiscurso" [(ngModel)]="registerCredentials.dataDiscurso" required></ion-input> -->
+              <ion-datetime min="2017" max="2018-10-31" displayFormat="DD/MM/YYYY" placeholder="Data do Discurso" name="dataDiscurso" [(ngModel)]="registerCredentials.dataDiscurso"
+                required></ion-datetime>
+            </ion-item>
+            <ion-item>
               <ion-input type="text" placeholder="Nome do Orador" name="nomeOrador" [(ngModel)]="registerCredentials.nomeOrador" required></ion-input>
             </ion-item>
             <ion-item>
@@ -38,16 +43,13 @@
                 required></ion-input>
             </ion-item>
             <ion-item hidden>
-              <ion-input type="text" placeholder="createdby" name="createdby" [(ngModel)]="registerCredentials.createdby" value="this.email"
-                required></ion-input>
+              <ion-input type="text" placeholder="createdby" name="createdby" [(ngModel)]="registerCredentials.createdby" value="this.email"></ion-input>
             </ion-item>
             <ion-item hidden>
-              <ion-input type="text" placeholder="Arranjo Criado por" name="createdDate" [(ngModel)]="registerCredentials.createdDate"
-                required></ion-input>
+              <ion-input type="text" placeholder="Arranjo Criado por" name="createdDate" [(ngModel)]="registerCredentials.createdDate"></ion-input>
             </ion-item>
             <ion-item hidden>
-              <ion-input type="text" placeholder="Arranjo Criado por" name="createdDate" [(ngModel)]="registerCredentials.lastUpdateby"
-                required></ion-input>
+              <ion-input type="text" placeholder="Ultima Atualizacao" name="lastUpdate" [(ngModel)]="registerCredentials.lastUpdateby"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -60,7 +62,7 @@
       </ion-row>
       <ion-row *ngIf="editMode">
         <ion-col class="signup-col">
-          <button ion-button color="oradoresColor" class="submit-btn" full type="button"  (click)="editar(registerCredentials)"[disabled]="!registerForm.form.valid">Salvar</button>
+          <button ion-button color="oradoresColor" class="submit-btn" full type="button" (click)="editar(registerCredentials)" [disabled]="!registerForm.form.valid">Salvar</button>
         </ion-col>
       </ion-row>
 

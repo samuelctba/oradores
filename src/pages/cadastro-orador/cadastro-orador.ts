@@ -21,7 +21,7 @@ export class CadastroOradorPage {
 
   createSuccess = false;
 
-  orador : Orador = new Orador();
+  orador: Orador = new Orador();
 
   registerCredentials = {
     dataDiscurso: new Date().toISOString().substring(0, 10),
@@ -44,17 +44,17 @@ export class CadastroOradorPage {
     private alertCtrl: AlertController,
     private afDB: AngularFireDatabase, ) {
 
-      // this.orador.$key = this.navParams.get('$key');
-      // this.orador.dataDiscurso = this.navParams.get('dataDiscurso');
-      // this.orador.nomeOrador = this.navParams.get('nomeOrador');
-      // this.orador.congregacao = this.navParams.get('congregacao');
-      // this.orador.numeroEsboco = this.navParams.get('numeroEsboco');
-      // this.orador.temaDiscurso = this.navParams.get('temaDiscurso');
-      // this.orador.telefoneContato = this.navParams.get('telefoneContato');
-      // this.orador.email = this.navParams.get('email');
-      // this.orador.createdby = this.navParams.get('createdby');
-      // this.orador.createdDate = this.navParams.get('createdDate');
-      // this.orador.lastUpdate = this.navParams.get('lastUpdate');
+    // this.orador.$key = this.navParams.get('$key');
+    // this.orador.dataDiscurso = this.navParams.get('dataDiscurso');
+    // this.orador.nomeOrador = this.navParams.get('nomeOrador');
+    // this.orador.congregacao = this.navParams.get('congregacao');
+    // this.orador.numeroEsboco = this.navParams.get('numeroEsboco');
+    // this.orador.temaDiscurso = this.navParams.get('temaDiscurso');
+    // this.orador.telefoneContato = this.navParams.get('telefoneContato');
+    // this.orador.email = this.navParams.get('email');
+    // this.orador.createdby = this.navParams.get('createdby');
+    // this.orador.createdDate = this.navParams.get('createdDate');
+    // this.orador.lastUpdate = this.navParams.get('lastUpdate');
 
 
     if (navParams.get('$key') !== null || navParams.get('$key') !== undefined) {
@@ -67,18 +67,21 @@ export class CadastroOradorPage {
       this.registerCredentials.temaDiscurso = navParams.get('temaDiscurso');
       this.registerCredentials.telefoneContato = navParams.get('telefoneContato');
       this.registerCredentials.email = navParams.get('email');
-      this.registerCredentials.createdby =(navParams.get('createdby') == undefined) ? new Date().toISOString().substring(0, 10) : ' ';
-      this.registerCredentials.createdDate = (navParams.get('createdDate') == undefined) ? new Date().toISOString().substring(0, 10) : ' ';
-      this.registerCredentials.lastUpdate = new Date().toISOString().substring(0, 10);
-    }else{
+      this.registerCredentials.createdby = (navParams.get('createdby') == undefined) ? new Date().toISOString().substring(0, 10) : 'Nao preenchido';
+      this.registerCredentials.createdDate = (navParams.get('createdDate') == undefined) ? new Date().toISOString().substring(0, 10) : 'Nao preenchido';
+      this.registerCredentials.lastUpdate = (navParams.get('lastUpdate') == undefined) ? new Date().toISOString().substring(0, 10) : 'Nao preenchido';
+    } else {
       this.registerCredentials.createdby = navParams.get('email');
-      this.registerCredentials.createdDate = (navParams.get('createdDate') == undefined) ? new Date().toISOString().substring(0, 10) : ' ';
-      this.registerCredentials.lastUpdate = (navParams.get('lastUpdate') == undefined) ? new Date().toISOString().substring(0, 10) : ' ';
+      this.registerCredentials.createdDate = (navParams.get('createdDate') == undefined) ? new Date().toISOString().substring(0, 10) : 'Nao preenchido';
+      this.registerCredentials.lastUpdate = (navParams.get('lastUpdate') == undefined) ? new Date().toISOString().substring(0, 10) : 'Nao preenchido';
     }
 
     // this.myForm = this.formBuilder.group({
     //   'serial':['', [Validators.required, Validators.minLength(9), Validators.pattern('[0-9]{1}[a-zA-Z]{2}[0-9]{6}')]]
     //   });
+
+    console.log(this.registerCredentials);
+
 
   }
 
@@ -115,9 +118,9 @@ export class CadastroOradorPage {
     alert.present();
   }
 
-  editar(registerCredentials){
+  editar(registerCredentials) {
     try {
-      const edicao = this.afDB.list('/arranjos').update(this.$key,registerCredentials);
+      const edicao = this.afDB.list('/arranjos').update(this.$key, registerCredentials);
       if (edicao) {
         this.createSuccess = true;
         this.showPopup("Sucesso!", "Arranjo editado com sucesso!");
@@ -128,6 +131,11 @@ export class CadastroOradorPage {
     catch (error) {
       this.showPopup("Error", error.message);
     }
+  }
+
+  checkForm(form) {
+    console.log(form);
+
   }
 
 }
